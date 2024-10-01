@@ -1,13 +1,13 @@
-# Analisis Brazillian _E-commerce_ (Olist) Delay Order
+# Analisis Brazillian E-commerce (Olist) Delay Order
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 ## Summary
 Proyek ini bertujuan untuk menganalisis dan memprediksi _delay_ pengiriman _order_ pada platform _e-commerce_ di Brasil bernama **Olist**. Dengan pertumbuhan _e-commerce_ yang pesat, kepuasan _customer_, terutama terkait waktu pengiriman, sangat penting untuk keberhasilan bisnis. Analisis ini bertujuan untuk memahami masalah bisnis terkait _delay_ pengiriman, dampaknya terhadap kepuasan _customer_, dan membuat model machine learning untuk memprediksi risiko _delay_ di masa mendatang.
 
 ## Business Understanding
-Persaingan yang semakin ketat dalam _e-commerce_ memaksa _seller_ untuk memastikan pengiriman yang efisien. _delay_ pengiriman dapat menyebabkan ulasan negatif dari _customer_, yang pada akhirnya memengaruhi kepuasan _customer_, reputasi, dan _seller_an. Proyek ini berfokus pada pemahaman isu-isu berikut:
+Persaingan yang semakin ketat dalam _e-commerce_ memaksa _seller_ untuk memastikan pengiriman yang efisien. _Delay_ pengiriman dapat menyebabkan ulasan negatif dari _customer_, yang pada akhirnya memengaruhi kepuasan _customer_, reputasi, dan penjualan. _Project_ ini berfokus pada pemahaman isu-isu berikut:
 1. Kerusakan Reputasi
-2. Pengurangan _seller_an
+2. Pengurangan Penjualan
 3. Kehilangan _customer_ (_Customer Churn_)
 4. Peningkatan Biaya Dukungan _customer_
 5. Kerusakan Hubungan antara Platform _E-commerce_ dan _seller_
@@ -21,7 +21,7 @@ Sebuah simulasi hipotetis diberikan untuk menghitung potensi kerugian finansial 
 
 - ID pesanan, ID pelanggan, Kategori Produk
 - Tanggal Pengiriman yang Diperkirakan dan Tanggal Pengiriman Aktual
-- Skor Ulasan dan Umpan Balik Pelanggan
+- Skor Ulasan dan Review Customer
 - Detail _seller_ dan Informasi Logistik
 
 **Deskripsi Tabel**
@@ -40,7 +40,7 @@ Sebuah simulasi hipotetis diberikan untuk menghitung potensi kerugian finansial 
 | `customer_unique_id` |customer| ID unik yang mewakili setiap _customer_ secara individu  | - |
 | `customer_zip_code_prefix` |customer| Kode pos tempat tinggal _customer_ | - |
 | `customer_city` |customer| Nama kota tempat tinggal _customer_ | Lokasi kota _customer_ tinggal |
-| `customer_state` |customer| Kode negara bagian tempat tinggal _customer_ | Contoh: SP untuk São Paulo di Brazil |
+| `customer_state` |customer| Kode negara bagian tempat tinggal _customer_ | Contoh: SP untuk São Paulo di Brasil |
 | `order_id` |item| Kode unik untuk menunjukan nomor id order dari Olist|-|
 | `order_item_id` |item| ID unik item dalam order | Mengidentifikasi setiap item dalam order |
 | `product_id` |item| ID unik produk | Mengidentifikasi produk yang dibeli|
@@ -60,7 +60,7 @@ Sebuah simulasi hipotetis diberikan untuk menghitung potensi kerugian finansial 
 | `seller_id`|seller| ID unik _seller_| Mengidentifikasi _seller_|
 | `seller_zip_code_prefix`|seller| Kode pos tempat tinggal _seller_| -|
 | `seller_city`|seller| Nama kota tempat tinggal _seller_| -|
-| `seller_state`|seller| Kode negara bagian tempat tinggal _seller_| Contoh: SP untuk Sao Paulo di Brazil|
+| `seller_state`|seller| Kode negara bagian tempat tinggal _seller_| Contoh: SP untuk Sao Paulo di Brasil|
 | `order_id`|payment| Kode unik untuk menunjukan nomor id order dari Olist|-|
 | `payment_sequential`|payment| Urutan pembayaran terkait dengan order| - |
 | `payment_type`|payment| Jenis metode pembayaran yang digunakan| Contoh: credit_card, boleto, voucher, dll. |
@@ -70,33 +70,31 @@ Sebuah simulasi hipotetis diberikan untuk menghitung potensi kerugian finansial 
 | `geolocation_lat`|geolocation| Garis lintang lokasi (latitude)| Koordinat geografis|
 | `geolocation_lng`|geolocation| Garis bujur lokasi (longitude)| Koordinat geografis|
 | `geolocation_city`|geolocation| Nama kota berdasarkan lokasi geolokasi|- |
-| `geolocation_state`|geolocation| Kode negara bagian berdasarkan lokasi geolokasi| Contoh: SP untuk São Paulo di Brazil|
+| `geolocation_state`|geolocation| Kode negara bagian berdasarkan lokasi geolokasi| Contoh: SP untuk São Paulo di Brasil|
 | `product_category_name`|category translation| Nama kategori produk dalam bahasa asli| Portugis |
 | `product_category_name_english` |category translation| Nama kategori produk dalam bahasa terjemahan| Inggris |
 
 ![Mind Map](https://i.imgur.com/HRhd2Y0.png)
 
-<br>
-
 ## Project Structure
 1. **Pemahaman Masalah Bisnis**: Eksplorasi mendetail tentang konteks, dampak, dan kerugian finansial akibat _delay_ pengiriman.
 2. **Eksplorasi dan Pra-pemrosesan Data**: Memuat dataset, membersihkan, dan mengeksplorasi data untuk memahami variabel-variabel dan tren utama.
 3. **Feature Engineering**: Membuat fitur baru seperti deviasi waktu pengiriman, sentimen ulasan, dan analisis mitra logistik untuk meningkatkan daya prediksi.
-4. **Pemodelan**: Membangun model machine learning untuk memprediksi apakah suatu _order_ akan terlambat atau tepat waktu. Beberapa model diuji, dan model terbaik dipilih berdasarkan metrik performa seperti akurasi, presisi, dan recall.
+4. **Pemodelan**: Membangun model machine learning untuk memprediksi apakah suatu _order_ akan terlambat atau tepat waktu. Beberapa model diuji, dan model terbaik dipilih berdasarkan metrik performa seperti RMSE, MAE, MAPE.
 5. **Evaluasi dan Insight**: Mengevaluasi performa model, menginterpretasikan hasil, dan memberikan insight yang dapat ditindaklanjuti untuk platform _e-commerce_ guna meminimalkan _delay_ dan meningkatkan kepuasan _customer_.
 
 ## Results
 Berdasarkan analisis yang dilakukan terhadap keterlambatan pengiriman dan dampaknya terhadap ulasan negatif, berikut adalah hasil utama yang diperoleh dari proyek ini:
 
-1. **Volume Pesanan yang Melonjak Selama Periode Sibuk**: Lonjakan volume pesanan yang signifikan, terutama selama periode sibuk seperti hari libur nasional dan Black Friday, berkontribusi pada peningkatan keterlambatan pengiriman. Hal ini menunjukkan perlunya strategi khusus dalam menghadapi periode dengan volume pesanan tinggi.
+1. **Volume Pesanan yang Melonjak Selama Periode Sibuk**: Lonjakan volume pesanan yang signifikan, terutama selama periode sibuk seperti hari libur nasional dan _Black Friday_, berkontribusi pada peningkatan keterlambatan pengiriman. Hal ini menunjukkan perlunya strategi khusus dalam menghadapi periode dengan volume pesanan tinggi.
 
 2. **Keterlambatan pada Tahap Akhir Pengiriman**: Keterlambatan pengiriman terutama terjadi pada tahap akhir, yaitu ketika pesanan sudah diterima oleh kurir dan sedang dalam proses pengantaran kepada pelanggan. Ini menunjukkan bahwa fase last-mile delivery memerlukan perhatian lebih dalam optimasi proses logistik.
 
-3. **Dampak Negatif terhadap Reputasi dan Kepercayaan Pelanggan**: Keterlambatan pengiriman mengakibatkan ulasan negatif yang berdampak langsung pada reputasi platform e-commerce. Hal ini berpotensi mengurangi kepercayaan pelanggan dan mempengaruhi _seller_an jangka panjang.
+3. **Dampak Negatif terhadap Reputasi dan Kepercayaan Pelanggan**: Keterlambatan pengiriman mengakibatkan ulasan negatif yang berdampak langsung pada reputasi platform e-commerce. Hal ini berpotensi mengurangi kepercayaan pelanggan dan mempengaruhi penjualan jangka panjang.
 
 4. **Pengiriman di Lokasi Terpencil**: Lokasi-lokasi terpencil, baik di tingkat kota, negara bagian, maupun rute tertentu, memiliki waktu pengiriman yang lebih lama. Hal ini menyoroti pentingnya perencanaan logistik yang lebih efektif untuk daerah-daerah yang cenderung memiliki risiko keterlambatan lebih tinggi.
 
-5. **Pengaruh Volume Pesanan pada Tingkat Keterlambatan**: Kenaikan volume pesanan pada tanggal-tanggal tertentu seperti hari libur atau event _seller_an besar berhubungan erat dengan peningkatan tingkat keterlambatan pengiriman, mengindikasikan kebutuhan perencanaan logistik dan pengelolaan sumber daya yang lebih baik selama periode tersebut.
+5. **Pengaruh Volume Pesanan pada Tingkat Keterlambatan**: Kenaikan volume pesanan pada tanggal-tanggal tertentu seperti hari libur atau event penjualan besar berhubungan erat dengan peningkatan tingkat keterlambatan pengiriman, mengindikasikan kebutuhan perencanaan logistik dan pengelolaan sumber daya yang lebih baik selama periode tersebut.
 
 6. **Prediksi dengan Model Time Series SARIMAX dan Gradient Boost**: Model time series SARIMAX digunakan untuk memprediksi total order dengan RMSE = 66.90, sementara model Gradient Boost digunakan untuk memprediksi jumlah keterlambatan dengan RMSE = 7.59. Hasil ini menunjukkan bahwa prediksi menggunakan dua pendekatan ini dapat memberikan gambaran yang jelas tentang tren dan risiko keterlambatan.
 
