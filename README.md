@@ -17,7 +17,7 @@ Persaingan yang semakin ketat dalam _e-commerce_ memaksa _seller_ untuk memastik
 Sebuah simulasi hipotetis diberikan untuk menghitung potensi kerugian finansial bulanan akibat _delay_ pengiriman dan ulasan negatif berikutnya, yang berjumlah sekitar **$10.013,33**.
 
 ## Dataset
-**Dataset ini disediakan oleh Olist**, sebuah department store terbesar di pasar e-commerce Brasil. Dataset yang digunakan dalam analisis ini mencakup detail pesanan, ulasan pelanggan, dan informasi pengiriman dari platform e-commerce Brasil, berupa bentuk tabel-tabel terpisah. Fitur-fitur yang terdapat dalam dataset ini meliputi:
+**Dataset ini disediakan oleh Olist**, sebuah department store terbesar di pasar e-commerce Brasil ([kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce?select=olist_sellers_dataset.csv)). Dataset yang digunakan dalam analisis ini mencakup detail pesanan, ulasan pelanggan, dan informasi pengiriman dari platform e-commerce Brasil, berupa bentuk tabel-tabel terpisah. Data yang digunakan merupakan kumpulan data order dari Januari 2017 hingga Agustus 2018. Fitur-fitur yang terdapat dalam dataset ini meliputi:
 
 - ID pesanan, ID pelanggan, Kategori Produk
 - Tanggal Pengiriman yang Diperkirakan dan Tanggal Pengiriman Aktual
