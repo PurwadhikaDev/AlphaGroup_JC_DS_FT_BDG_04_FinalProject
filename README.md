@@ -5,14 +5,14 @@
 Proyek ini bertujuan untuk menganalisis dan memprediksi _delay_ pengiriman _order_ pada platform _e-commerce_ di Brasil bernama **Olist**. Dengan pertumbuhan _e-commerce_ yang pesat, kepuasan _customer_, terutama terkait waktu pengiriman, sangat penting untuk keberhasilan bisnis. Analisis ini bertujuan untuk memahami masalah bisnis terkait _delay_ pengiriman, dampaknya terhadap kepuasan _customer_, dan membuat model machine learning untuk memprediksi risiko _delay_ di masa mendatang.
 
 ## Business Understanding
-Persaingan yang semakin ketat dalam _e-commerce_ memaksa penjual untuk memastikan pengiriman yang efisien. _delay_ pengiriman dapat menyebabkan ulasan negatif dari _customer_, yang pada akhirnya memengaruhi kepuasan _customer_, reputasi, dan penjualan. Proyek ini berfokus pada pemahaman isu-isu berikut:
+Persaingan yang semakin ketat dalam _e-commerce_ memaksa _seller_ untuk memastikan pengiriman yang efisien. _delay_ pengiriman dapat menyebabkan ulasan negatif dari _customer_, yang pada akhirnya memengaruhi kepuasan _customer_, reputasi, dan _seller_an. Proyek ini berfokus pada pemahaman isu-isu berikut:
 1. Kerusakan Reputasi
-2. Pengurangan Penjualan
-3. Kehilangan _customer_ (Customer Churn)
+2. Pengurangan _seller_an
+3. Kehilangan _customer_ (_Customer Churn_)
 4. Peningkatan Biaya Dukungan _customer_
-5. Kerusakan Hubungan antara Platform _E-commerce_ dan Penjual
+5. Kerusakan Hubungan antara Platform _E-commerce_ dan _seller_
 6. Dampak pada Algoritma dan Visibilitas Produk
-7. Potensi Refund atau Return
+7. Potensi _Refund_ atau _Return_
 
 Sebuah simulasi hipotetis diberikan untuk menghitung potensi kerugian finansial bulanan akibat _delay_ pengiriman dan ulasan negatif berikutnya, yang berjumlah sekitar **$10.013,33**.
 
@@ -22,29 +22,29 @@ Sebuah simulasi hipotetis diberikan untuk menghitung potensi kerugian finansial 
 - ID pesanan, ID pelanggan, Kategori Produk
 - Tanggal Pengiriman yang Diperkirakan dan Tanggal Pengiriman Aktual
 - Skor Ulasan dan Umpan Balik Pelanggan
-- Detail Penjual dan Informasi Logistik
+- Detail _seller_ dan Informasi Logistik
 
 **Deskripsi Tabel**
 
 | Nama Kolom | Tabel Asal | Deskripsi | Keterangan |
 |---|---|---|---|
 |`order_id`|order|Kode unik untuk menunjukan nomor id order dari Olist|-|
-|`customer_id`|order|Kode unik untuk setiap customer pad tiap `order_id`|Lebih detail di tabel customer|
+|`customer_id`|order|Kode unik untuk setiap _customer_ pada tiap `order_id`|Lebih detail di tabel _customer_|
 |`order_status`|order|Status dari order yang telah dibuat|'delivered', 'invoiced', 'shipped', 'processing',<br>'unavailable', 'canceled', 'created', 'approved'|
 |`order_purchase_timestamp`|order|Waktu saat order dibeli|Format: YYYY-MM-DD HH:MM:SS|
 |`order_approved_at`|order|Waktu saat order disetujui|Format: YYYY-MM-DD HH:MM:SS|
 |`order_delivered_carrier_date`|order|Tanggal saat order diserahkan kepada kurir|Format: YYYY-MM-DD HH:MM:SS|
-|`order_delivered_customer_date`|order|Tanggal saat order diterima oleh customer|Format: YYYY-MM-DD HH:MM:SS|
+|`order_delivered_customer_date`|order|Tanggal saat order diterima oleh _customer_|Format: YYYY-MM-DD HH:MM:SS|
 |`order_estimated_delivery_date`|order|Tanggal estimasi pengiriman order|Format: YYYY-MM-DD HH:MM:SS|
-| `customer_id` |customer| ID unik customer yang terhubung dengan tabel order | Berupa angka atau kode unik |
-| `customer_unique_id` |customer| ID unik yang mewakili setiap customer secara individu  | - |
-| `customer_zip_code_prefix` |customer| Kode pos tempat tinggal customer | - |
-| `customer_city` |customer| Nama kota tempat tinggal customer | Lokasi kota customer tinggal |
-| `customer_state` |customer| Kode negara bagian tempat tinggal customer | Contoh: SP untuk São Paulo di Brazil |
+| `customer_id` |customer| ID unik _customer_ yang terhubung dengan tabel order | Berupa angka atau kode unik |
+| `customer_unique_id` |customer| ID unik yang mewakili setiap _customer_ secara individu  | - |
+| `customer_zip_code_prefix` |customer| Kode pos tempat tinggal _customer_ | - |
+| `customer_city` |customer| Nama kota tempat tinggal _customer_ | Lokasi kota _customer_ tinggal |
+| `customer_state` |customer| Kode negara bagian tempat tinggal _customer_ | Contoh: SP untuk São Paulo di Brazil |
 | `order_id` |item| Kode unik untuk menunjukan nomor id order dari Olist|-|
 | `order_item_id` |item| ID unik item dalam order | Mengidentifikasi setiap item dalam order |
 | `product_id` |item| ID unik produk | Mengidentifikasi produk yang dibeli|
-| `seller_id` item|| ID unik penjual | Terhubung ke identitas penjual|
+| `seller_id` |item| ID unik _seller_ | Terhubung ke identitas _seller_|
 | `shipping_limit_date` |item| Batas waktu pengiriman | Tanggal terakhir pengiriman harus dilakukan |
 | `price` |item| Harga produk | Harga per item |
 | `freight_value` |item| Biaya pengiriman | Ongkos kirim yang dikenakan|
@@ -57,10 +57,10 @@ Sebuah simulasi hipotetis diberikan untuk menghitung potensi kerugian finansial 
 | `product_length_cm`|produk| Panjang produk |dalam sentimeter|
 | `product_height_cm`|produk| Tinggi produk|dalam sentimeter|
 | `product_width_cm`|produk| Lebar produk| dalam sentimeter |
-| `seller_id`|seller| ID unik penjual| Mengidentifikasi penjual|
-| `seller_zip_code_prefix`|seller| Kode pos tempat tinggal penjual| -|
-| `seller_city`|seller| Nama kota tempat tinggal penjual| -|
-| `seller_state`|seller| Kode negara bagian tempat tinggal penjual| Contoh: SP untuk Sao Paulo di Brazil|
+| `seller_id`|seller| ID unik _seller_| Mengidentifikasi _seller_|
+| `seller_zip_code_prefix`|seller| Kode pos tempat tinggal _seller_| -|
+| `seller_city`|seller| Nama kota tempat tinggal _seller_| -|
+| `seller_state`|seller| Kode negara bagian tempat tinggal _seller_| Contoh: SP untuk Sao Paulo di Brazil|
 | `order_id`|payment| Kode unik untuk menunjukan nomor id order dari Olist|-|
 | `payment_sequential`|payment| Urutan pembayaran terkait dengan order| - |
 | `payment_type`|payment| Jenis metode pembayaran yang digunakan| Contoh: credit_card, boleto, voucher, dll. |
@@ -92,11 +92,11 @@ Berdasarkan analisis yang dilakukan terhadap keterlambatan pengiriman dan dampak
 
 2. **Keterlambatan pada Tahap Akhir Pengiriman**: Keterlambatan pengiriman terutama terjadi pada tahap akhir, yaitu ketika pesanan sudah diterima oleh kurir dan sedang dalam proses pengantaran kepada pelanggan. Ini menunjukkan bahwa fase last-mile delivery memerlukan perhatian lebih dalam optimasi proses logistik.
 
-3. **Dampak Negatif terhadap Reputasi dan Kepercayaan Pelanggan**: Keterlambatan pengiriman mengakibatkan ulasan negatif yang berdampak langsung pada reputasi platform e-commerce. Hal ini berpotensi mengurangi kepercayaan pelanggan dan mempengaruhi penjualan jangka panjang.
+3. **Dampak Negatif terhadap Reputasi dan Kepercayaan Pelanggan**: Keterlambatan pengiriman mengakibatkan ulasan negatif yang berdampak langsung pada reputasi platform e-commerce. Hal ini berpotensi mengurangi kepercayaan pelanggan dan mempengaruhi _seller_an jangka panjang.
 
 4. **Pengiriman di Lokasi Terpencil**: Lokasi-lokasi terpencil, baik di tingkat kota, negara bagian, maupun rute tertentu, memiliki waktu pengiriman yang lebih lama. Hal ini menyoroti pentingnya perencanaan logistik yang lebih efektif untuk daerah-daerah yang cenderung memiliki risiko keterlambatan lebih tinggi.
 
-5. **Pengaruh Volume Pesanan pada Tingkat Keterlambatan**: Kenaikan volume pesanan pada tanggal-tanggal tertentu seperti hari libur atau event penjualan besar berhubungan erat dengan peningkatan tingkat keterlambatan pengiriman, mengindikasikan kebutuhan perencanaan logistik dan pengelolaan sumber daya yang lebih baik selama periode tersebut.
+5. **Pengaruh Volume Pesanan pada Tingkat Keterlambatan**: Kenaikan volume pesanan pada tanggal-tanggal tertentu seperti hari libur atau event _seller_an besar berhubungan erat dengan peningkatan tingkat keterlambatan pengiriman, mengindikasikan kebutuhan perencanaan logistik dan pengelolaan sumber daya yang lebih baik selama periode tersebut.
 
 6. **Prediksi dengan Model Time Series SARIMAX dan Gradient Boost**: Model time series SARIMAX digunakan untuk memprediksi total order dengan RMSE = 66.90, sementara model Gradient Boost digunakan untuk memprediksi jumlah keterlambatan dengan RMSE = 7.59. Hasil ini menunjukkan bahwa prediksi menggunakan dua pendekatan ini dapat memberikan gambaran yang jelas tentang tren dan risiko keterlambatan.
 
